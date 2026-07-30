@@ -16,6 +16,7 @@ dhd-blog-analysis/
 ├── .gitignore
 │
 ├── data/
+│   ├── dhd_blog_dataset.csv
 │   └── dhd_blog_dataset.xlsx
 │
 ├── notebooks/
@@ -83,7 +84,7 @@ The scraper automatically collects publicly available posts from the DHd Blog by
 - Full article text
 - Archive metadata
 
-The collected data are cleaned, standardized, and exported as structured Excel and CSV datasets.
+The collected data are cleaned, standardized, and exported as structured CSV and Excel datasets.
 
 The scraper is fully reproducible and can be rerun to update the dataset with newly published blog posts.
 
@@ -160,8 +161,8 @@ Each record contains:
 
 Running the complete workflow produces:
 
-- Cleaned Excel dataset
-- Cleaned CSV dataset
+- Cleaned CSV dataset (primary reusable format)
+- Cleaned Excel dataset (for convenient inspection)
 - Publication-quality figures
 - Statistical summaries
 - Topic evolution analyses
