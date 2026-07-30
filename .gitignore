@@ -20,5 +20,9 @@ env/
 Thumbs.db
 desktop.ini
 
+# Scraper checkpoint files
+*_checkpoint.csv
+*_checkpoint_errors.csv
+
 # Output files (optional)
 output/
