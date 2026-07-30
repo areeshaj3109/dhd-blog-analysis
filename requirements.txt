@@ -1,5 +1,6 @@
 beautifulsoup4
 ipython
+jinja2
 lxml
 matplotlib
 nltk
