@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "DHd Blog Analysis"
+message: "If you use this repository in your research, please cite it as follows."
+
+type: software
+
+authors:
+  - family-names: "Jiwani"
+    given-names: "Areesha"
+
+repository-code: "https://github.com/areeshaj3109/dhd-blog-analysis"
+
+license: MIT
+
+version: "1.0.0"
+
+date-released: 2026-07-30
+
+keywords:
+  - Digital Humanities
+  - DHd Blog
+  - Web Scraping
+  - Text Mining
+  - Exploratory Data Analysis
+  - Python
+
+abstract: >
+  A reproducible Python workflow for collecting, processing, and analysing content from the DHd Blog, including a web scraper, structured dataset, and exploratory data analysis.

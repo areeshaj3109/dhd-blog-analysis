@@ -1,0 +1,12 @@
+beautifulsoup4
+ipython
+lxml
+matplotlib
+nltk
+numpy
+openpyxl
+pandas
+requests
+scipy
+tqdm
+wordcloud
