@@ -17,7 +17,9 @@ dhd-blog-analysis/
 │
 ├── data/
 │   ├── dhd_blog_dataset.csv
-│   └── dhd_blog_dataset.xlsx
+│   ├── dhd_blog_dataset.xlsx
+│   ├── dhd_blog_all_post_links.csv
+│   └── dhd_blog_post_errors.csv
 │
 ├── notebooks/
 │   ├── dhd_blog_scraper.ipynb
@@ -26,6 +28,7 @@ dhd-blog-analysis/
 ├── figures/
 │   ├── fig01_posts_per_year.png
 │   ├── fig02_posts_per_month.png
+│   ├── fig03_top_dhd_blog_categories.png
 │   └── ...
 │
 └── output/    (optional)
@@ -72,7 +75,7 @@ This repository consists of two primary components.
 
 ## 1. DHd Blog Web Scraper
 
-The scraper automatically collects publicly available posts from the DHd Blog by extracting:
+The scraper automatically collects publicly available blog posts from the DHd Blog by extracting:
 
 - Publication date
 - Title
@@ -140,7 +143,7 @@ Publication-quality visualizations are generated to illustrate trends, distribut
 
 Current dataset statistics:
 
-- **2,740** DHd Blog posts
+- **2,752** DHd Blog posts
 - Publication period: **2011–2026**
 
 Each record contains:
@@ -163,7 +166,9 @@ Running the complete workflow produces:
 
 - Cleaned CSV dataset (primary reusable format)
 - Cleaned Excel dataset (for convenient inspection)
-- Publication-quality figures
+- Complete list of discovered blog post URLs
+- Error log for posts that could not be processed (if any)
+- Publication-quality figures (saved in the `figures/` directory)
 - Statistical summaries
 - Topic evolution analyses
 - Text mining outputs
@@ -184,7 +189,7 @@ pip install -r requirements.txt
 
 # Usage
 
-## Step 1 — Collect the dataset
+## Step 1 - Collect the dataset
 
 Run:
 
@@ -192,7 +197,7 @@ Run:
 notebooks/dhd_blog_scraper.ipynb
 ```
 
-The scraper saves the processed dataset into:
+The scraper saves the processed data into the data/ directory, including the cleaned CSV and Excel datasets, a complete list of discovered blog post URLs, and an error log containing any posts that could not be processed.
 
 ```
 data/
@@ -200,7 +205,7 @@ data/
 
 ---
 
-## Step 2 — Analyse the dataset
+## Step 2 - Analyse the dataset
 
 Run:
 
