@@ -6,7 +6,7 @@ A reproducible Python workflow for collecting, processing, and analysing content
 
 ## Repository Structure
 
-```
+```text
 dhd-blog-analysis/
 │
 ├── README.md
@@ -26,7 +26,7 @@ dhd-blog-analysis/
 │   └── dhd_blog_analysis.ipynb
 │
 ├── figures/
-│   ├── fig01_posts_per_year.png
+│   ├── fig01_dhd_posts_per_year.png
 │   ├── fig02_posts_per_month.png
 │   ├── fig03_top_dhd_blog_categories.png
 │   └── ...
@@ -36,9 +36,9 @@ dhd-blog-analysis/
 
 ---
 
-# Workflow
+## Workflow
 
-```
+```text
 DHd Blog
     │
     ▼
@@ -51,7 +51,7 @@ Raw HTML
 Data Cleaning & Processing
     │
     ▼
-Structured Dataset (.xlsx/.csv)
+Structured Dataset (.csv/.xlsx)
     │
     ▼
 Exploratory Data Analysis
@@ -89,7 +89,11 @@ The scraper automatically collects publicly available blog posts from the DHd Bl
 
 The collected data are cleaned, standardized, and exported as structured CSV and Excel datasets.
 
-The scraper is fully reproducible and can be rerun to update the dataset with newly published blog posts.
+The scraper supports checkpoint-based execution, allowing interrupted scraping runs to resume without repeating successfully collected articles.
+
+The scraper can be rerun to update the dataset with newly published blog posts, provided the source website remains accessible and its HTML structure is compatible with the extraction logic.
+
+**Website note:** During the November 2026 collection, the DHd Blog was temporarily served through static HTML pages. The scraper preserves the original discovered article URLs to maintain access to these pages.
 
 ---
 
@@ -123,7 +127,7 @@ The project follows a reproducible workflow consisting of four stages.
 
 ### 1. Data Collection
 
-Publicly available posts are collected automatically using a Python-based web scraper.
+Publicly available posts are collected automatically using a Python-based web scraper. Monthly archives and their paginated pages are traversed to discover article URLs, with unique post IDs used to prevent duplicate records.
 
 ### 2. Data Processing
 
@@ -133,6 +137,8 @@ Extracted information is cleaned, standardized, and transformed into a structure
 
 The processed dataset is analysed using descriptive statistics, temporal analysis, category analysis, tag analysis, and text mining techniques.
 
+Research topic detection uses predefined keyword dictionaries. Topic assignments are exploratory and may include multiple topics per article.
+
 ### 4. Visualization
 
 Publication-quality visualizations are generated to illustrate trends, distributions, relationships, and thematic patterns across the dataset.
@@ -141,9 +147,12 @@ Publication-quality visualizations are generated to illustrate trends, distribut
 
 # Dataset
 
-Current dataset statistics:
+Current dataset statistics (November 2026):
 
-- **2,752** DHd Blog posts
+- **2,779** successfully scraped DHd Blog posts
+- **2,780** unique discovered post links
+- **1** excluded temporary website announcement
+- **18** dataset columns
 - Publication period: **2011–2026**
 
 Each record contains:
@@ -157,6 +166,9 @@ Each record contains:
 - Number of comments
 - Word count
 - Full article text
+- Archive metadata
+
+**Dataset format:** `dhd_blog_dataset.csv` is the primary full-text dataset used for analysis. The Excel version is provided for convenient inspection, but article text exceeding Excel's 32,767-character cell limit may be truncated.
 
 ---
 
@@ -193,15 +205,17 @@ pip install -r requirements.txt
 
 Run:
 
-```
+```text
 notebooks/dhd_blog_scraper.ipynb
 ```
 
-The scraper saves the processed data into the data/ directory, including the cleaned CSV and Excel datasets, a complete list of discovered blog post URLs, and an error log containing any posts that could not be processed.
+The scraper saves the processed data into the `data/` directory, including the cleaned CSV and Excel datasets, a complete list of discovered blog post URLs, and an error log containing any posts that could not be processed.
 
-```
+```text
 data/
 ```
+
+Temporary checkpoint files are saved locally in the `notebooks/` directory to support resuming interrupted scraping runs. These files are excluded from Git version control.
 
 ---
 
@@ -209,13 +223,15 @@ data/
 
 Run:
 
-```
+```text
 notebooks/dhd_blog_analysis.ipynb
 ```
 
+The analysis notebook uses `data/dhd_blog_dataset.csv` as its input to preserve complete article text.
+
 Generated figures are automatically saved into:
 
-```
+```text
 figures/
 ```
 
@@ -241,13 +257,19 @@ This project uses:
 
 # Reproducibility
 
-The notebooks use relative paths and can be executed without modification in:
+The notebooks use relative paths and are designed to run with the repository's folder structure in:
 
 - Jupyter Notebook
 - JupyterLab
 - Visual Studio Code
 - Google Colab
 - GitHub Codespaces
+
+The required dependencies must be installed before execution. Cloud-based environments such as Google Colab may require additional setup to make the repository files accessible.
+
+For a complete run, execute the scraper notebook first, followed by the analysis notebook. The analysis notebook can also be run independently using the existing CSV dataset.
+
+Scraping results depend on the availability and structure of the source website.
 
 ---
 
@@ -256,6 +278,8 @@ The notebooks use relative paths and can be executed without modification in:
 The dataset was collected from publicly available posts on the **DHd Blog**.
 
 https://dhd-blog.org/
+
+The dataset represents a snapshot of the website at the time of collection. Changes to the source website may affect future scraping results.
 
 ---
 
@@ -273,7 +297,7 @@ Potential extensions include:
 
 # License
 
-This project is distributed under the MIT License.
+This project's original source code is distributed under the MIT License. See [LICENSE](LICENSE).
 
 ---
 
@@ -285,7 +309,7 @@ If you use this repository in your research, please cite it using the citation i
 
 ## Contact
 
-Areesha Jiwani
+Areesha Jiwani  
 M.Sc. Data Science Student
 
 GitHub: https://github.com/areeshaj3109
